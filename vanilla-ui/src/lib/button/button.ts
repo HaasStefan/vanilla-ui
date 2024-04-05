@@ -1,13 +1,11 @@
 import { html, css, LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { Nullable } from 'vitest';
-
-export type IconPosition =
-  | 'left'
-  | 'right';
+import { ButtonSeverity, IconPosition } from './button.model';
+import { VuiSize } from '../shared/size.util';
 
 @customElement('vui-button')
-export class SimpleGreeting extends LitElement {
+export class VuiButton extends LitElement {
   static override styles = css`
     .vui-button {
       display: inline-flex;
@@ -28,14 +26,19 @@ export class SimpleGreeting extends LitElement {
         transform: rotate(360deg);
       }
     }
+
+    /* Your custom styles go here */
   `;
 
+  @property() severity: ButtonSeverity = ButtonSeverity.DEFAULT;
+  @property() size: VuiSize = VuiSize.MD;
   @property() label!: string;
-  @property({ type: Boolean }) loading: Nullable<boolean> = null;
+  @property({ type: Boolean }) rounded!: boolean;
+  @property({ type: Boolean }) loading!: boolean;
   @property({ attribute: 'loading-spinner' }) loadingSpinner: Nullable<unknown> = null;
   @property() icon?: unknown;
-  @property({ attribute: 'icon-pos' }) iconPos?: IconPosition = 'left';
-  @property({ type: Boolean }) disabled = false;
+  @property({ attribute: 'icon-pos' }) iconPos?: IconPosition = IconPosition.LEFT;
+  @property({ type: Boolean }) disabled!: boolean;
 
   override render() {
     const loadingTemplate = html`${
@@ -53,17 +56,25 @@ export class SimpleGreeting extends LitElement {
     }
     `;
 
+    const buttonClass = `vui-button vui-button-severity-${this.severity} vui-button-size-${this.size} ${this.rounded ? 'vui-button-rounded' : ''}`;
+
     return html`
       <button
         type="button"
-        class="vui-button"
+        class="${buttonClass}"
         ?disabled=${this.disabled || this.loading}
       >
-        ${loadingTemplate}
-
-        ${iconTemplate}
-
+        ${
+          this.iconPos === 'left'
+            ? html`${loadingTemplate} ${iconTemplate}`
+            : ''
+        }
         <div class="vui-button-label">${this.label}</div>
+        ${
+          this.iconPos === 'right'
+            ? html`${loadingTemplate} ${iconTemplate}`
+            : ''
+        }
       </button>
     `;
   }

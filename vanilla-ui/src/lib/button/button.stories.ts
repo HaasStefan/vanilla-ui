@@ -15,6 +15,7 @@ export default {
       icon="${args['icon'] ?? undefined}"
       icon-pos="${args['iconPos'] ?? undefined}"
       ?disabled="${args['disabled'] ?? false}"
+      ?rounded="${args['rounded'] ?? false}"
     ></vui-button>`
 } as Meta;
 
@@ -54,12 +55,36 @@ export const Disabled: StoryObj = {
   }
 };
 
-export const WithIcon: StoryObj = {
-  name: 'With icon',
+export const Icon: StoryObj = {
+  name: 'Icon',
   args: {
-    label: 'With icon',
+    label: 'Icon',
     icon: '🚀',
     iconPos: 'left',
+    loading: false,
+    loadingSpinner: '💩'
+  }
+};
+
+export const IconRight: StoryObj = {
+  name: 'Icon Right',
+  args: {
+    label: 'Icon right',
+    icon: '🚀',
+    iconPos: 'right',
+    loading: false,
+    loadingSpinner: '💩'
+  }
+};
+
+
+export const Rounded: StoryObj = {
+  name: 'Rounded',
+  args: {
+    label: 'Rounded',
+    rounded: true,
+    icon: '',
+    iconPos: 'right',
     loading: false,
     loadingSpinner: '💩'
   }
