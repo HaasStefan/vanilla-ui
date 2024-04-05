@@ -15,6 +15,18 @@ Design systems and component libraries are being reinvented in every framework. 
 
 Vanilla UI is based on web components, which are natively supported by all modern browsers. This means that you can use Vanilla UI in any framework or even without a framework. By building on top of Vanilla UI, you can create a design system that is truly framework agnostic and can be used in any project.
 
+## Usage
+
+```
+git clone https://github.com/HaasStefan/vanilla-ui.git
+cd vanilla-ui
+
+# Install dependencies
+npm install
+
+# Run the storybook
+npm run storybook
+```
 
 ## Components
 
