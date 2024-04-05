@@ -10,6 +10,7 @@
 - framework-agnostic
 - own your design system
 - customize everything
+- WCAG/Accessibility baked in
 
 Design systems and component libraries are being reinvented in every framework. Angular, React, Vue, Svelte... All of them have their own implementation of a button, table, date picker, etc., even though these components are doing the same thing in a different syntax.
 
